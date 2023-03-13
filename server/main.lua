@@ -1,5 +1,5 @@
 ESX = nil
-QBCore = nil
+RSGCore = nil
 
 Citizen.CreateThread(function()
     SetConvar('chat_showJoins', '0')
@@ -7,8 +7,8 @@ Citizen.CreateThread(function()
     if config.esx then
         ESX = exports["es_extended"]:getSharedObject()
         StopResource('esx_rpchat')
-    elseif config.qbcore then
-        QBCore = exports['qb-core']:GetCoreObject()
+    elseif config.rsgcore then
+        RSGCore = exports['rsg-core']:GetCoreObject()
     end
 end)
 
@@ -39,9 +39,9 @@ RegisterCommand('ooc', function(source, args, rawCommand)
     if config.esx then
         local xPlayer = ESX.GetPlayerFromId(source)
         playerName = xPlayer.getName()
-    elseif config.qbcore then
-        local xPlayer = QBCore.Functions.GetPlayer(source)
-        playerName = xPlayer.PlayerData.charinfo.firstname .. "," .. xPlayer.PlayerData.charinfo.lastname 
+    elseif config.rsgcore then
+        local xPlayer = RSGCore.Functions.GetPlayer(source)
+        playerName = xPlayer.PlayerData.charinfo.firstname .. " " .. xPlayer.PlayerData.charinfo.lastname 
     else
         playerName = GetPlayerName(source)
     end
@@ -60,9 +60,9 @@ AddEventHandler('chatMessage', function(source, name, message)
     if config.esx then
         local xPlayer = ESX.GetPlayerFromId(source)
         playerName = xPlayer.getName()
-    elseif config.qbcore then
-        local xPlayer = QBCore.Functions.GetPlayer(source)
-        playerName = xPlayer.PlayerData.charinfo.firstname .. "," .. xPlayer.PlayerData.charinfo.lastname 
+    elseif config.rsgcore then
+        local xPlayer = RSGCore.Functions.GetPlayer(source)
+        playerName = xPlayer.PlayerData.charinfo.firstname .. " " .. xPlayer.PlayerData.charinfo.lastname 
     else
         playerName = GetPlayerName(source)
     end
@@ -77,9 +77,9 @@ RegisterCommand('me', function(source, args, rawCommand)
     if config.esx then
         local xPlayer = ESX.GetPlayerFromId(source)
         playerName = xPlayer.getName()
-    elseif config.qbcore then
-        local xPlayer = QBCore.Functions.GetPlayer(source)
-        playerName = xPlayer.PlayerData.charinfo.firstname .. "," .. xPlayer.PlayerData.charinfo.lastname 
+    elseif config.rsgcore then
+        local xPlayer = RSGCore.Functions.GetPlayer(source)
+        playerName = xPlayer.PlayerData.charinfo.firstname .. " " .. xPlayer.PlayerData.charinfo.lastname 
     else
         playerName = GetPlayerName(source)
     end
@@ -97,9 +97,9 @@ RegisterCommand('do', function(source, args, rawCommand)
     if config.esx then
         local xPlayer = ESX.GetPlayerFromId(source)
         playerName = xPlayer.getName()
-    elseif config.qbcore then
-        local xPlayer = QBCore.Functions.GetPlayer(source)
-        playerName = xPlayer.PlayerData.charinfo.firstname .. "," .. xPlayer.PlayerData.charinfo.lastname 
+    elseif config.rsgcore then
+        local xPlayer = RSGCore.Functions.GetPlayer(source)
+        playerName = xPlayer.PlayerData.charinfo.firstname .. " " .. xPlayer.PlayerData.charinfo.lastname 
     else
         playerName = GetPlayerName(source)
     end
@@ -116,9 +116,9 @@ RegisterCommand('news', function(source, args, rawCommand)
     if config.esx then
         local xPlayer = ESX.GetPlayerFromId(source)
         playerName = xPlayer.getName()
-    elseif config.qbcore then
-        local xPlayer = QBCore.Functions.GetPlayer(source)
-        playerName = xPlayer.PlayerData.charinfo.firstname .. "," .. xPlayer.PlayerData.charinfo.lastname 
+    elseif config.rsgcore then
+        local xPlayer = RSGCore.Functions.GetPlayer(source)
+        playerName = xPlayer.PlayerData.charinfo.firstname .. " " .. xPlayer.PlayerData.charinfo.lastname 
     else
         playerName = GetPlayerName(source)
     end
@@ -135,9 +135,9 @@ RegisterCommand('ad', function(source, args, rawCommand)
     if config.esx then
         local xPlayer = ESX.GetPlayerFromId(source)
         playerName = xPlayer.getName()
-    elseif config.qbcore then
-        local xPlayer = QBCore.Functions.GetPlayer(source)
-        playerName = xPlayer.PlayerData.charinfo.firstname .. "," .. xPlayer.PlayerData.charinfo.lastname 
+    elseif config.rsgcore then
+        local xPlayer = RSGCore.Functions.GetPlayer(source)
+        playerName = xPlayer.PlayerData.charinfo.firstname .. " " .. xPlayer.PlayerData.charinfo.lastname 
     else
         playerName = GetPlayerName(source)
     end
@@ -148,22 +148,22 @@ RegisterCommand('ad', function(source, args, rawCommand)
 end, false)
 
 -- Tweet
-RegisterCommand('twt', function(source, args, rawCommand)
+RegisterCommand('tele', function(source, args, rawCommand)
     local playerName
     local msg = rawCommand:sub(5)
     if config.esx then
         local xPlayer = ESX.GetPlayerFromId(source)
         playerName = xPlayer.getName()
-    elseif config.qbcore then
-        local xPlayer = QBCore.Functions.GetPlayer(source)
-        playerName = xPlayer.PlayerData.charinfo.firstname .. "," .. xPlayer.PlayerData.charinfo.lastname 
+    elseif config.rsgcore then
+        local xPlayer = RSGCore.Functions.GetPlayer(source)
+        playerName = xPlayer.PlayerData.charinfo.firstname .. " " .. xPlayer.PlayerData.charinfo.lastname 
     else
         playerName = GetPlayerName(source)
     end
     if config.DiscordWebhook then
         sendToDiscord(16753920, playerName.." has executed /"..rawCommand:sub(1, 3), '**Command arguments**: '..msg, "Identifiers: \n"..GetPlayerIdentifier(source, 0).."\n"..GetPlayerIdentifier(source, 1).."\n"..GetPlayerIdentifier(source, 2).."\n"..GetPlayerIdentifier(source, 3))
     end
-    TriggerClientEvent('cc-rpchat:addMessage', -1, '#2980b9', 'fa-brands fa-twitter', '@'..playerName, msg)
+    TriggerClientEvent('cc-rpchat:addMessage', -1, '#2980b9', 'fa-solid fa-envelope', 'Telegram | '..playerName, msg)
 end, false)
 
 -- Anon
@@ -173,9 +173,9 @@ RegisterCommand('anon', function(source, args, rawCommand)
     if config.esx then
         local xPlayer = ESX.GetPlayerFromId(source)
         playerName = xPlayer.getName()
-    elseif config.qbcore then
-        local xPlayer = QBCore.Functions.GetPlayer(source)
-        playerName = xPlayer.PlayerData.charinfo.firstname .. "," .. xPlayer.PlayerData.charinfo.lastname 
+    elseif config.rsgcore then
+        local xPlayer = RSGCore.Functions.GetPlayer(source)
+        playerName = xPlayer.PlayerData.charinfo.firstname .. " " .. xPlayer.PlayerData.charinfo.lastname 
     else
         playerName = GetPlayerName(source)
     end
@@ -183,6 +183,25 @@ RegisterCommand('anon', function(source, args, rawCommand)
         sendToDiscord(16753920, playerName.." has executed /"..rawCommand:sub(1, 4), '**Command arguments**: '..msg, "Identifiers: \n"..GetPlayerIdentifier(source, 0).."\n"..GetPlayerIdentifier(source, 1).."\n"..GetPlayerIdentifier(source, 2).."\n"..GetPlayerIdentifier(source, 3))
     end
     TriggerClientEvent('cc-rpchat:addMessage', -1, '#2c3e50', 'fa-solid fa-mask', 'Anonymous | '.. source, msg)
+end, false)
+
+-- Rail
+RegisterCommand('rail', function(source, args, rawCommand)
+    local playerName
+    local msg = rawCommand:sub(5)
+    if config.esx then
+        local xPlayer = ESX.GetPlayerFromId(source)
+        playerName = xPlayer.getName()
+    elseif config.rsgcore then
+        local xPlayer = RSGCore.Functions.GetPlayer(source)
+        playerName = xPlayer.PlayerData.charinfo.firstname .. " " .. xPlayer.PlayerData.charinfo.lastname 
+    else
+        playerName = GetPlayerName(source)
+    end
+    if config.DiscordWebhook then
+        sendToDiscord(16753920, playerName.." has executed /"..rawCommand:sub(1, 4), '**Command arguments**: '..msg, "Identifiers: \n"..GetPlayerIdentifier(source, 0).."\n"..GetPlayerIdentifier(source, 1).."\n"..GetPlayerIdentifier(source, 2).."\n"..GetPlayerIdentifier(source, 3))
+    end
+    TriggerClientEvent('cc-rpchat:addMessage', -1, '#B53535', 'fa-solid fa-train', 'Railroad | '..playerName, msg)
 end, false)
 
 -- Player join and leave messages
