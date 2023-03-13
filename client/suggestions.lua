@@ -19,11 +19,15 @@ Citizen.CreateThread(function()
       { name="Message", help="Product or service." }
     })
   
-    TriggerEvent('chat:addSuggestion', '/twt', 'Send a Twitter message. (Global Chat)', {
-      { name="Message", help="Twitter message." }
+    TriggerEvent('chat:addSuggestion', '/tele', 'Send a telegram message. (Global Chat)', {
+      { name="Message", help="Telegram message." }
     })
   
     TriggerEvent('chat:addSuggestion', '/anon', 'Send an anonymous message. (Global Chat)', {
       { name="Message", help="Anonymous message." }
+    })
+
+    TriggerEvent('chat:addSuggestion', '/rail', 'Send an railroad message. (Global Chat)', {
+      { name="Message", help="Railroad Announcement." }
     })
 end)
